@@ -51,7 +51,7 @@ light-weight.
 Summary:	Library to extract valid data from within an Excel spreadsheet
 Group:		Development/C
 
-%description -n %{libname}
+%description -n %{develname}
 FreeXL is an open source library to extract valid data from within an Excel
 (.xls) spreadsheet.
 
