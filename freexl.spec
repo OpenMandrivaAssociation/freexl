@@ -68,6 +68,7 @@ autoreconf
 
 %install
 %makeinstall_std
+rm -f %{buildroot}%{_libdir}/*.la
 
 %files -n %{libname}
 %{_libdir}/libfreexl.so.%{major}*
