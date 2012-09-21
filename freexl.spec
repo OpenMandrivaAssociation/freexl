@@ -5,7 +5,7 @@
 Name:		freexl
 Summary:	Library to extract valid data from within an Excel spreadsheet
 Version:	1.0.0d
-Release:	1
+Release:	2
 License:	MPL or GPLv2 or LGPLv2.1
 Group:		System/Libraries
 URL:		https://www.gaia-gis.it/fossil/freexl/index
@@ -50,6 +50,8 @@ light-weight.
 %package -n %{develname}
 Summary:	Library to extract valid data from within an Excel spreadsheet
 Group:		Development/C
+Requires:	%{libname} = %{version}
+Provides:	%{name}-devel = %{EVRD}
 
 %description -n %{develname}
 FreeXL is an open source library to extract valid data from within an Excel
