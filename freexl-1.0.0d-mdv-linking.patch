@@ -1,0 +1,11 @@
+Index: freexl-1.0.0d/src/Makefile.am
+===================================================================
+--- freexl-1.0.0d.orig/src/Makefile.am
++++ freexl-1.0.0d/src/Makefile.am
+@@ -8,4 +8,6 @@ libfreexl_la_SOURCES = freexl.c
+ 
+ libfreexl_la_LDFLAGS = -version-info 1:0:0 -no-undefined
+ 
++libfreexl_la_LIBADD = -lm
++
+ MOSTLYCLEANFILES = *.gcna *.gcno *.gcda
