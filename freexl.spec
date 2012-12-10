@@ -80,3 +80,15 @@ rm -f %{buildroot}%{_libdir}/*.la
 %{_libdir}/libfreexl.so
 %{_libdir}//pkgconfig/freexl.pc
 %{_includedir}/freexl.h
+
+
+%changelog
+* Fri Sep 21 2012 Dmitry Mikhirev <dmikhirev@mandriva.org> 1.0.0d-2
++ Revision: 817231
+- fix deps
+- manually remove .la files (for backporting)
+
+* Thu Sep 20 2012 Dmitry Mikhirev <dmikhirev@mandriva.org> 1.0.0d-1
++ Revision: 817197
+- imported package freexl
+
