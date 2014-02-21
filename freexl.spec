@@ -1,16 +1,15 @@
-%define major		1
-%define libname		%mklibname %{name} %{major}
-%define develname	%mklibname %{name} -d
+%define major 1
+%define libname %mklibname %{name} %{major}
+%define devname %mklibname %{name} -d
 
-Name:		freexl
 Summary:	Library to extract valid data from within an Excel spreadsheet
-Version:	1.0.0d
-Release:	2
-License:	MPL or GPLv2 or LGPLv2.1
+Name:		freexl
+Version:	1.0.0g
+Release:	1
+License:	MPL or GPLv2+ or LGPLv2.1+
 Group:		System/Libraries
-URL:		https://www.gaia-gis.it/fossil/freexl/index
-Source0:	http://www.gaia-gis.it/gaia-sins/freexl-1.0.0d.tar.gz
-Patch0:		freexl-1.0.0d-mdv-linking.patch
+Url:		https://www.gaia-gis.it/fossil/freexl/index
+Source0:	http://www.gaia-gis.it/gaia-sins/%{name}-%{version}.tar.gz
 
 %description
 FreeXL is an open source library to extract valid data from within an Excel
@@ -27,6 +26,8 @@ Note that the final goal means that FreeXL ignores at all fonts, sizes
 and alignments, and most formats. It ignores Pivot Table, Charts, Formulas,
 Visual Basic macros and so on. FreeXL is structurally simple and quite
 light-weight.
+
+#----------------------------------------------------------------------------
 
 %package -n %{libname}
 Summary:	Library to extract valid data from within an Excel spreadsheet
@@ -47,48 +48,40 @@ and alignments, and most formats. It ignores Pivot Table, Charts, Formulas,
 Visual Basic macros and so on. FreeXL is structurally simple and quite
 light-weight.
 
-%package -n %{develname}
+%files -n %{libname}
+%{_libdir}/libfreexl.so.%{major}*
+
+#----------------------------------------------------------------------------
+
+%package -n %{devname}
 Summary:	Library to extract valid data from within an Excel spreadsheet
 Group:		Development/C
-Requires:	%{libname} = %{version}
+Requires:	%{libname} = %{EVRD}
 Provides:	%{name}-devel = %{EVRD}
 
-%description -n %{develname}
+%description -n %{devname}
 FreeXL is an open source library to extract valid data from within an Excel
 (.xls) spreadsheet.
 
 This package contains development files.
 
-%prep
-%setup -q
-%patch0 -p1
-autoreconf
-
-%build
-%configure2_5x --disable-static
-%make
-
-%install
-%makeinstall_std
-rm -f %{buildroot}%{_libdir}/*.la
-
-%files -n %{libname}
-%{_libdir}/libfreexl.so.%{major}*
-
-%files -n %{develname}
+%files -n %{devname}
 %doc AUTHORS README
 %{_libdir}/libfreexl.so
 %{_libdir}//pkgconfig/freexl.pc
 %{_includedir}/freexl.h
 
+#----------------------------------------------------------------------------
 
-%changelog
-* Fri Sep 21 2012 Dmitry Mikhirev <dmikhirev@mandriva.org> 1.0.0d-2
-+ Revision: 817231
-- fix deps
-- manually remove .la files (for backporting)
+%prep
+%setup -q
 
-* Thu Sep 20 2012 Dmitry Mikhirev <dmikhirev@mandriva.org> 1.0.0d-1
-+ Revision: 817197
-- imported package freexl
+%build
+autoreconf
+%configure2_5x \
+	--disable-static
+%make
+
+%install
+%makeinstall_std
 
