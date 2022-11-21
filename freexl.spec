@@ -11,6 +11,10 @@ License:	MPL or GPLv2+ or LGPLv2.1+
 Group:		System/Libraries
 Url:		https://www.gaia-gis.it/fossil/freexl/index
 Source0:	http://www.gaia-gis.it/gaia-sins/freexl-sources/freexl-%{version}%{?beta:-%{beta}}.tar.gz
+BuildRequires:	pkgconfig(minizip)
+BuildRequires:	make
+BuildRequires:	autoconf
+BuildRequires:	automake
 
 %description
 FreeXL is an open source library to extract valid data from within an Excel
@@ -76,13 +80,11 @@ This package contains development files.
 
 %prep
 %autosetup -p1 -n %{name}-%{version}%{?beta:-%{beta}}
+autoreconf
+%configure
 
 %build
-autoreconf
-%configure2_5x \
-	--disable-static
-%make
+%make_build
 
 %install
-%makeinstall_std
-
+%make_install
