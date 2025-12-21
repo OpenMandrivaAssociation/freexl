@@ -11,6 +11,8 @@ License:	MPL or GPLv2+ or LGPLv2.1+
 Group:		System/Libraries
 Url:		https://www.gaia-gis.it/fossil/freexl/index
 Source0:	http://www.gaia-gis.it/gaia-sins/freexl-sources/freexl-%{version}%{?beta:-%{beta}}.tar.gz
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
 BuildRequires:	pkgconfig(minizip)
 BuildRequires:	pkgconfig(expat)
 BuildRequires:	make
